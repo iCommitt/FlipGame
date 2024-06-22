@@ -2,8 +2,9 @@ const imgArray = ['alfa','alfa','bentley','bentley',
             'bmw','bmw','ferrari','ferrari',
             'kia','kia','mercedes','mercedes',
             'skoda','skoda','toyota','toyota'];
-let count = 0;
+let count = 0, GREENcard = 0, record = [];
 
+  
 restart();
 //REORDER ARRAY
 function restart(){
@@ -60,8 +61,6 @@ const img = document.querySelectorAll('.PLAY');
 //ACTUAL GAMEPLAY
 let first,second,firstIndex,secondIndex;
 function gameplay(i){
-    button = document.querySelectorAll('.card')
-    console.log(count)
     if(count == 1){
         img[i].style.opacity = '1';
         secondIndex = i;
@@ -81,18 +80,21 @@ function gameplay(i){
 
 //COMPARE
 function compare(){
-    if (first.innerHTML == second.innerHTML){
+    if (first.innerHTML == second.innerHTML && firstIndex != secondIndex){
         img[firstIndex].className = 'STOP';
+        button[firstIndex].className = 'GREENcard';
         img[secondIndex].className = 'STOP';
+        button[secondIndex].className = 'GREENcard'
+        GREENcard += 2;
+        if (GREENcard == button.length){StartStop()}
     };
 }
 
 ///////////////////////////////////////////////
-
-var base = 60;
-var clocktimer, dateObj, dh, dm, ds, ms;
-var readout = '';
-var h = 1,
+let base = 60;
+let clocktimer, dateObj, dh, dm, ds;
+let readout = '';
+let h = 1,
   m = 1,
   tm = 1,
   s = 0,
